@@ -6,7 +6,18 @@ const getTourismName = async (req, res) => {
 
     try {
         
-        const searchTourism = await Tourism.findAll({where: {name:{[Op.iLike]:`%${name}%`}}})
+        const searchTourism = await Tourism.findAll({
+            where: {
+                name:{
+                    
+                    [Op.iLike]:`%${name}%`, 
+                    
+                    
+                }
+            },
+            
+            include: [Country]
+        })
 
         if(!searchTourism.length){
 
